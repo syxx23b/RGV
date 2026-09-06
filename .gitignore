@@ -1,0 +1,24 @@
+**/bin/
+**/obj/
+**/node_modules/
+**/dist/
+dist-client/
+**/.vite/
+*.log
+.env
+.env.*
+!.env.example
+
+# IDE / OS junk
+.vs/
+.idea/
+*.user
+Thumbs.db
+.DS_Store
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Publish output
+publish/
+artifacts/

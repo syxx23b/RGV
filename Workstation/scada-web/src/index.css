@@ -1,0 +1,21 @@
+html, body, #root {
+  min-height: 100%;
+  font-family: "HarmonyOS Sans SC Medium", "HarmonyOS Sans SC", "Microsoft YaHei UI", "Segoe UI", Arial, sans-serif;
+}
+
+/* Global square-corner policy; only switch track and thumb keep their shape. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+.status-switch-track,
+.config-switch-track {
+  border-radius: 999px !important;
+}
+
+.status-switch-thumb,
+.config-switch-thumb {
+  border-radius: 50% !important;
+}

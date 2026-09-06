@@ -1,0 +1,500 @@
+.digital-twin-shell {
+  display: grid;
+  gap: 16px;
+  min-height: 0;
+}
+
+.digital-twin-stage-card {
+  aspect-ratio: 2048 / 340;
+  min-height: 0;
+  max-height: 420px;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid rgba(77, 122, 171, 0.24);
+  background:
+    radial-gradient(circle at top, rgba(56, 189, 248, 0.08), transparent 34%),
+    radial-gradient(circle at center, rgba(111, 186, 255, 0.04), transparent 42%),
+    linear-gradient(180deg, rgba(9, 20, 34, 0.98), rgba(7, 16, 28, 0.98));
+  box-shadow: 0 12px 28px rgba(23, 53, 83, 0.16);
+}
+
+.digital-twin-viewer {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  background: transparent;
+}
+
+.digital-twin-svg {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: transparent;
+}
+
+/* Flat plant plan used by the dashboard and the standalone digital twin. */
+.digital-twin-flat-conveyor rect {
+  fill: #1b2a38;
+  stroke: rgba(157, 187, 210, 0.34);
+  stroke-width: 2;
+}
+
+.digital-twin-flat-conveyor {
+  opacity: 0.42;
+}
+
+.digital-twin-flat-conveyor path {
+  stroke: #91a9bb;
+  stroke-width: 3;
+  stroke-linecap: butt;
+}
+
+.digital-twin-station text {
+  fill: #172d4d;
+  font-size: 19px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.digital-twin-station.selectable { cursor: pointer; outline: none; }
+.digital-twin-station.selectable:hover .digital-twin-station-frame { stroke: #4da3ff; stroke-width: 4; }
+.digital-twin-station.selectable:focus-visible .digital-twin-station-frame { stroke: #82c5ff; stroke-width: 5; }
+.digital-twin-station.selected .digital-twin-station-frame { fill: #eaf5ff; stroke: #2387e8; stroke-width: 3; }
+.digital-twin-station.selected text { fill: #145b9e; }
+.station-select-send .digital-twin-station.selected .digital-twin-station-frame { fill: url(#digital-twin-send-selection-gradient); stroke: #c6a85e; stroke-width: 3; filter: drop-shadow(0 0 4px rgba(198,168,94,.28)); }
+.station-select-send .digital-twin-station.selected text { fill: #4c3600; }
+.station-select-call .digital-twin-station.selected .digital-twin-station-frame { fill: url(#digital-twin-call-selection-gradient); stroke: #5ca57a; stroke-width: 3; filter: drop-shadow(0 0 4px rgba(92,165,122,.25)); }
+.station-select-call .digital-twin-station.selected text { fill: #073b24; }
+.digital-twin-station.disabled .digital-twin-station-frame { fill: #647383; stroke: #3d4b5a; }
+.digital-twin-station.disabled text { fill: #f4f8fb; }
+
+.digital-twin-station-stop rect {
+  fill: #12171c;
+}
+
+.digital-twin-station-occupied-block {
+  fill-opacity: 0.62;
+}
+
+.digital-twin-station-motion {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+}
+
+.digital-twin-station-motion.forward {
+  stroke: #169c5a;
+}
+
+.digital-twin-station-motion.reverse {
+  stroke: #c93535;
+}
+
+.digital-twin-station-motion.move {
+  stroke: #3f8de0;
+}
+
+.digital-twin-station-motion.flow-guide {
+  stroke-width: 4;
+  opacity: 0.34;
+}
+
+.digital-twin-station-motion.flow-chevron {
+  stroke-width: 8;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: station-chevron-down 900ms linear infinite;
+}
+
+.digital-twin-station-motion.flow-chevron.flow-up {
+  animation-name: station-chevron-up;
+}
+
+.digital-twin-station-motion.flow-chevron.flow-left {
+  animation-name: station-chevron-left;
+}
+
+.digital-twin-station-motion.flow-chevron.flow-right {
+  animation-name: station-chevron-right;
+}
+
+.digital-twin-station-motion.flow-chevron.secondary {
+  animation-delay: -450ms;
+}
+
+/* Keep operational motion visible when the host browser requests reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .digital-twin-station-motion.flow-chevron {
+    animation-name: station-chevron-down !important;
+    animation-duration: 900ms !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
+  }
+
+  .digital-twin-station-motion.flow-chevron.flow-up {
+    animation-name: station-chevron-up !important;
+  }
+
+  .digital-twin-station-motion.flow-chevron.flow-left {
+    animation-name: station-chevron-left !important;
+  }
+
+  .digital-twin-station-motion.flow-chevron.flow-right {
+    animation-name: station-chevron-right !important;
+  }
+
+  .digital-twin-station-motion.flow-chevron.secondary {
+    animation-delay: -450ms !important;
+  }
+}
+
+@keyframes station-chevron-down {
+  0% { transform: translateY(-7px); opacity: 0; }
+  22% { opacity: 0.48; }
+  55% { opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+@keyframes station-chevron-up {
+  0% { transform: translateY(7px); opacity: 0; }
+  22% { opacity: 0.48; }
+  55% { opacity: 1; }
+  100% { transform: translateY(-8px); opacity: 0; }
+}
+
+@keyframes station-chevron-left {
+  0% { transform: translateX(7px); opacity: 0; }
+  22% { opacity: 0.48; }
+  55% { opacity: 1; }
+  100% { transform: translateX(-8px); opacity: 0; }
+}
+
+@keyframes station-chevron-right {
+  0% { transform: translateX(-7px); opacity: 0; }
+  22% { opacity: 0.48; }
+  55% { opacity: 1; }
+  100% { transform: translateX(8px); opacity: 0; }
+}
+
+.digital-twin-rgv text {
+  fill: #ffffff;
+  font-size: 26px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.digital-twin-params {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.digital-twin-param-card,
+.digital-twin-lane-panel {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d9e4ef;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(31, 58, 87, 0.08);
+}
+
+.digital-twin-param-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.digital-twin-param-head h3 {
+  margin: 0;
+  font-size: 15px;
+  color: #183454;
+}
+
+.digital-twin-param-head span {
+  color: #7287a0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.digital-twin-param-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.digital-twin-car-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) 148px 148px;
+  gap: 10px;
+  align-items: center;
+}
+
+.digital-twin-field {
+  display: grid;
+  gap: 6px;
+}
+
+.digital-twin-status-field {
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd8e5;
+  background: #f8fbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.digital-twin-status-field i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #b9c6d3;
+}
+
+.digital-twin-status-field em {
+  color: #617791;
+  font-size: 12px;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.digital-twin-status-field.green.active i {
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.18);
+}
+
+.digital-twin-status-field.green.active {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: #f0fdf6;
+}
+
+.digital-twin-status-field.green.active em {
+  color: #15803d;
+}
+
+.digital-twin-status-field.blue.active i {
+  background: #3f8de0;
+  box-shadow: 0 0 0 3px rgba(63, 141, 224, 0.18);
+}
+
+.digital-twin-status-field.blue.active {
+  border-color: rgba(63, 141, 224, 0.4);
+  background: #f0f7ff;
+}
+
+.digital-twin-status-field.blue.active em {
+  color: #1d5fa8;
+}
+
+.digital-twin-station-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.digital-twin-station-row {
+  display: grid;
+  grid-template-columns: auto minmax(80px, 1fr) minmax(72px, auto) minmax(72px, auto);
+  gap: 6px 10px;
+  align-items: center;
+  padding: 7px 10px;
+  border: 1px solid #dce6ef;
+  border-radius: 8px;
+  background: #f9fbfd;
+}
+
+.digital-twin-station-row strong {
+  display: inline-flex;
+  align-items: center;
+  color: #183454;
+  font-size: 13px;
+}
+
+.digital-twin-readonly-field,
+.digital-twin-readonly-value {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 8px;
+  border: 1px solid #dce6ef;
+  border-radius: 5px;
+  background: #f3f7fb;
+}
+
+.digital-twin-readonly-field small,
+.digital-twin-readonly-value small {
+  color: #7890a8;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.digital-twin-readonly-field strong,
+.digital-twin-readonly-value strong {
+  color: #526f8d;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.digital-twin-readonly-value.forward {
+  border-color: rgba(34, 168, 102, .28);
+  background: #eaf8f0;
+}
+
+.digital-twin-readonly-value.forward strong { color: #15803d; }
+
+.digital-twin-readonly-value.reverse {
+  border-color: rgba(201, 53, 53, .28);
+  background: #fdf0f0;
+}
+
+.digital-twin-readonly-value.reverse strong { color: #b91c1c; }
+
+.digital-twin-readonly-value.occupied {
+  border-color: rgba(216, 166, 58, .34);
+  background: #fff8e5;
+}
+
+.digital-twin-readonly-value.occupied strong { color: #9a6b05; font-size: 17px; }
+.digital-twin-readonly-row .digital-twin-readonly-value:not(.occupied) strong { color: #526f8d; }
+
+
+.digital-twin-track rect,
+.digital-twin-track path {
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.24));
+}
+
+.digital-twin-track path {
+  filter: drop-shadow(0 0 10px rgba(165, 214, 255, 0.2));
+}
+
+.digital-twin-unit rect {
+  filter:
+    drop-shadow(0 12px 18px rgba(0, 0, 0, 0.34))
+    drop-shadow(0 0 10px rgba(154, 178, 205, 0.14));
+}
+
+.digital-twin-car path {
+  filter:
+    drop-shadow(0 16px 24px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 18px rgba(86, 186, 255, 0.12));
+}
+
+.digital-twin-label {
+  fill: #f2f8ff;
+  font-size: 16px;
+  font-weight: 800;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: #15212a;
+  stroke-width: 4px;
+}
+
+.digital-twin-side-label {
+  fill: #a8bbd6;
+  font-size: 13px;
+  font-weight: 700;
+  text-anchor: middle;
+  paint-order: stroke;
+  stroke: rgba(11, 18, 32, 0.92);
+  stroke-width: 3px;
+  letter-spacing: 0;
+}
+
+.digital-twin-conveyor path {
+  fill: none;
+  stroke: #eef4f6;
+  stroke-width: 3.2;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 6px rgba(238, 244, 246, 0.12));
+}
+
+.digital-twin-conveyor-stopped path {
+  stroke: #aebbc4;
+}
+
+.digital-twin-unit rect:hover,
+.digital-twin-car path:hover {
+  filter:
+    drop-shadow(0 18px 24px rgba(0, 0, 0, 0.42))
+    drop-shadow(0 0 14px rgba(120, 196, 255, 0.18));
+}
+
+@media (max-width: 980px) {
+  .digital-twin-params {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-twin-car-row,
+  .digital-twin-param-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-twin-station-row {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-twin-station-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Standalone twin: the configuration follows the work surface. */
+@media (min-width: 1281px) {
+  .digital-twin-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    height: auto;
+    gap: 16px;
+    background: transparent;
+  }
+
+  .digital-twin-stage-card,
+  .digital-twin-viewer {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .digital-twin-params {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+    overflow: visible;
+    gap: 14px;
+    border: 0;
+    background: transparent;
+  }
+
+  .digital-twin-params .digital-twin-param-card {
+    grid-column: span 2;
+  }
+}
+
+/* The wallboard supplies the frame for its embedded twin. */
+.wallboard-digital-twin-shell .digital-twin-shell {
+  position: absolute;
+  inset: 0;
+  display: block;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: hidden;
+  background: transparent;
+}
+
+.wallboard-digital-twin-shell .digital-twin-params { display: none; }
+
+.wallboard-digital-twin-shell .digital-twin-stage-card,
+.wallboard-digital-twin-shell .digital-twin-viewer {
+  height: 100%;
+  min-height: 0;
+}

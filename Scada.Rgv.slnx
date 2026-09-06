@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Mes.Api/Mes.Api.csproj" />
+  <Project Path="Scada.Rgv.S7Service/Scada.Rgv.S7Service.csproj" />
+</Solution>
