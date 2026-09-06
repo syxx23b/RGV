@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { DigitalTwinWallboardGraphic, StationSelectGraphic } from './DigitalTwinModule'
 import { S7_API, postS7Command } from './s7Api'
@@ -114,7 +114,7 @@ export function WallboardApp({ onExit }: { onExit?: () => void } = {}) {
   }, [])
 
   useEffect(() => {
-    const serverBase = /^https?:\/\//i.test(serverIp) ? serverIp.replace(/\/$/, '') : `http://${serverIp}:4000`
+    const serverBase = /^https?:\/\//i.test(serverIp) ? serverIp.replace(/\/$/, '') : `http://${serverIp}:9100`
     let active = true
     const readActiveWorkOrder = async () => {
       try {
@@ -241,7 +241,7 @@ export function WallboardApp({ onExit }: { onExit?: () => void } = {}) {
           </header>
 
           {sopOpen && activeWorkOrder && <section className="wallboard-sop-viewer" aria-label="当前执行任务 SOP">
-            <iframe title={`${activeWorkOrder.operationName} SOP`} src={`${/^https?:\/\//i.test(serverIp) ? serverIp.replace(/\/$/, '') : `http://${serverIp}:4000`}/api/sop-documents/${activeWorkOrder.routeId}/${activeWorkOrder.sequenceNo}#page=1&zoom=page-fit&view=Fit&navpanes=0`} />
+            <iframe title={`${activeWorkOrder.operationName} SOP`} src={`${/^https?:\/\//i.test(serverIp) ? serverIp.replace(/\/$/, '') : `http://${serverIp}:9100`}/api/sop-documents/${activeWorkOrder.routeId}/${activeWorkOrder.sequenceNo}#page=1&zoom=page-fit&view=Fit&navpanes=0`} />
           </section>}
 
           <WallboardFlowDemo stationOperationLabels={stationOperationLabels} s7State={s7State} wallboardScale={wallboardScale} isInterfaceFlipped={isInterfaceFlipped} />

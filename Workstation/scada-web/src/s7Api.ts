@@ -1,5 +1,5 @@
 // Each workstation owns its S7 process; the default is the local workstation API.
-export const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:4103'
+export const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:9104'
 
 export type TwinLayoutState = {
   schemaVersion: number

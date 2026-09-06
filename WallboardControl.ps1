@@ -9,8 +9,8 @@ param(
   [string]$EdgeProfile,
   [Parameter(Mandatory = $true)]
   [string]$Url,
-  [int]$ApiPort = 4000,
-  [int]$WebPort = 4001
+  [int]$ApiPort = 9100,
+  [int]$WebPort = 9102
 )
 
 $ErrorActionPreference = 'Stop'

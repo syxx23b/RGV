@@ -6,9 +6,9 @@ export default defineConfig(({ mode }) => ({
   plugins: [react()],
   server: {
     host: '127.0.0.1',
-    port: 4001,
+    port: 9102,
     proxy: {
-      '/api': 'http://127.0.0.1:4000',
+      '/api': 'http://127.0.0.1:9100',
     },
   },
   build: {

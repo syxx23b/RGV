@@ -8,11 +8,11 @@ if "%STATION%"=="" set "STATION=1"
 set "PLC_HOST=%SCADA_PLC_HOST%"
 if "%PLC_HOST%"=="" set "PLC_HOST=192.168.88.1"
 set "MES_API=%MES_SERVER_API%"
-if "%MES_API%"=="" set "MES_API=http://127.0.0.1:4000"
+if "%MES_API%"=="" set "MES_API=http://127.0.0.1:9100"
 set "S7_PORT=%WORKSTATION_S7_PORT%"
-if "%S7_PORT%"=="" set "S7_PORT=4103"
+if "%S7_PORT%"=="" set "S7_PORT=9104"
 set "WEB_PORT=%WORKSTATION_WEB_PORT%"
-if "%WEB_PORT%"=="" set "WEB_PORT=4101"
+if "%WEB_PORT%"=="" set "WEB_PORT=9101"
 
 echo Starting workstation OP%STATION%
 echo PLC: %PLC_HOST%:102

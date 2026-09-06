@@ -1,4 +1,4 @@
-﻿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { CSSProperties, FormEvent, ReactNode } from 'react'
 import './App.css'
 import { DigitalTwinWallboardGraphic } from './DigitalTwinModule'
@@ -28,7 +28,7 @@ const TOWER_LIGHT_PALETTE: Record<TowerLightStatus, { color: string; soft: strin
   red: { color: '#d92d32', soft: 'rgba(217, 45, 50, .38)' },
 }
 const MES_API = import.meta.env.VITE_SERVER_API ?? ''
-const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:4003'
+const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:9103'
 const SERVER_SESSION_KEY = 'mes-server-session'
 const WORKSTATION_SESSION_KEY = 'mes-workstation-session'
 const WORK_ORDER_UPDATED_KEY = 'mes-work-order-updated'

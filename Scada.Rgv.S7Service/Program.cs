@@ -6,7 +6,7 @@ builder.Host.UseWindowsService(options => options.ServiceName = "Scada RGV S7 Co
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     policy.SetIsOriginAllowed(origin => Uri.TryCreate(origin, UriKind.Absolute, out var uri)
         && uri.Scheme is "http" or "https"
-        && uri.Port == 4001)
+        && uri.Port == 9102)
         .AllowAnyHeader()
         .AllowAnyMethod()));
 builder.Services.AddSingleton<AppDataPaths>();

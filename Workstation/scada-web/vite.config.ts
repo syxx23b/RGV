@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const s7Target = 'http://127.0.0.1:4103'
+const s7Target = 'http://127.0.0.1:9104'
 
 export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
-    port: 4101,
+    port: 9101,
     strictPort: true,
     proxy: {
       '/api/s7': {

@@ -1,5 +1,5 @@
 // Deployments may override the server S7 API address through VITE_S7_API.
-export const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:4003'
+export const S7_API = import.meta.env.VITE_S7_API ?? 'http://127.0.0.1:9103'
 
 export type TwinLayoutState = {
   schemaVersion: number

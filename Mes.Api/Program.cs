@@ -1,4 +1,4 @@
-﻿using System.Data;
+using System.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Data.SqlClient;
 using System.Net.Http.Json;
@@ -17,7 +17,7 @@ builder.Services.AddCors(options =>
             if (origins.Contains(origin, StringComparer.OrdinalIgnoreCase)) return true;
             return Uri.TryCreate(origin, UriKind.Absolute, out var uri)
                 && uri.Scheme is "http" or "https"
-                && uri.Port is 4001 or 4101;
+                && uri.Port is 9102 or 9101;
         }).AllowAnyHeader().AllowAnyMethod();
     });
 });
@@ -701,7 +701,7 @@ app.Run();
 
 sealed class RgvRunTracker(IHttpClientFactory httpClientFactory, MesDatabase database, IConfiguration configuration, ILogger<RgvRunTracker> logger) : BackgroundService
 {
-    private readonly string _s7Api = (configuration["S7:ApiBase"] ?? "http://127.0.0.1:4003").TrimEnd('/');
+    private readonly string _s7Api = (configuration["S7:ApiBase"] ?? "http://127.0.0.1:9103").TrimEnd('/');
     private int? _activeId;
     private bool _seenMissionSeven;
     private DateTime _startTime;
